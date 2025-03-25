@@ -1,43 +1,65 @@
 import { NextResponse } from "next/server";
-import { match } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
+import type { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
+import { routes } from "@/app/resources";
 
-const locales = ["en", "cs"];
-const defaultLocale = "cs";
-
-function getLocale(request: {
-  headers: Iterable<readonly [PropertyKey, any]>;
-}) {
-  const headersObj = Object.fromEntries(request.headers);
-  const languages = new Negotiator({ headers: headersObj }).languages();
-  const matchedLocale = match(languages, locales, defaultLocale);
-  console.log("Matched locale:", matchedLocale);
-  return matchedLocale;
-}
-
-export function middleware(request: {
-  nextUrl: { clone?: any; pathname?: any };
-  headers: Iterable<readonly [PropertyKey, any]>;
-}) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  if (pathname === "/login") {
+    const token = request.cookies.get("auth-token")?.value;
+    if (token) {
+      try {
+        await jwtVerify(
+          token,
+          new TextEncoder().encode(process.env.JWT_SECRET)
+        );
+        return NextResponse.redirect(new URL("/", request.url));
+      } catch (error) {}
+    }
+  }
+
+  const protectedRouteEntry = Object.entries(routes).find(
+    ([routePath, config]) => {
+      if (config.protected === false) return false;
+      return pathname === routePath || pathname.startsWith(routePath + "/");
+    }
   );
 
-  if (pathnameHasLocale) {
+  if (!protectedRouteEntry) {
     return NextResponse.next();
   }
 
-  const locale = getLocale({ headers: request.headers });
+  const token = request.cookies.get("auth-token")?.value;
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
 
-  const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(url);
+  try {
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode(process.env.JWT_SECRET)
+    );
+    const userRole = payload.role as string;
+    const requiredRole =
+      typeof protectedRouteEntry[1].protected === "object"
+        ? protectedRouteEntry[1].protected.role
+        : undefined;
+
+    if (requiredRole === "admin" && userRole !== "admin") {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    if (
+      requiredRole === "user" &&
+      userRole !== "user" &&
+      userRole !== "admin"
+    ) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  } catch (error) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  return NextResponse.next();
 }
-
-export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|icon.png|sitemap.xml|robots.txt|opengraph-image.jpeg|twitter-image.jpeg|img|lang).*)",
-  ],
-};

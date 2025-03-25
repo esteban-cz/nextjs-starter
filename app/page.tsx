@@ -6,19 +6,9 @@ import { TextShimmerWave } from "@/components/ui/text-shimmer-wave";
 import { InView } from "@/components/ui/in-view";
 import { TextLoop } from "@/components/ui/text-loop";
 import { GlowEffect } from "@/components/ui/glow-effect";
-import { getDictionary } from "./dictionaries";
 import { Tilt } from "@/components/ui/tilt";
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{
-    lang: "en" | "cs";
-  }>;
-}) {
-  const { lang } = await params;
-  const dictionaries = await getDictionary(lang);
-  const dict = dictionaries.home;
+export default async function Home() {
   return (
     <div className="py-16">
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
@@ -35,7 +25,6 @@ export default async function Home({
               <TextShimmerWave className="sm:inline mt-2 sm:mt-0">
                 {info.name}
               </TextShimmerWave>
-              <div className="mt-6">{dict.language}</div>
             </h1>
             <TextLoop
               className="overflow-y-clip"

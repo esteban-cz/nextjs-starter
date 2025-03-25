@@ -6,20 +6,11 @@ import { baseURL, info } from "@/app/resources";
 import ScrollProvider from "@/components/providers/scroll-provider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import LanguageSwitch from "@/components/ui/lang-button";
 import { DockFooter } from "@/components/layout/DockFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{
-    lang: "en" | "cs";
-  }>;
-}): Promise<Metadata> {
-  const { lang } = await params;
-  const description = lang === "cs" ? info.description.cs : info.description.en;
+export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(baseURL),
     authors: info.author,
@@ -27,24 +18,19 @@ export async function generateMetadata({
       template: `%s | ${info.name}`,
       default: info.name,
     },
-    description,
+    description: info.description,
     keywords: info.keywords,
     icons: [{ rel: "icon", url: info.icon }],
   };
 }
 
 export default async function RootLayout({
-  params,
   children,
 }: {
-  params: Promise<{
-    lang: "en" | "cs";
-  }>;
   children: React.ReactNode;
 }) {
-  const { lang } = await params;
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -54,10 +40,7 @@ export default async function RootLayout({
         >
           <ScrollProvider>
             <Navbar />
-            <main className="min-h-screen">
-              {children}
-              <LanguageSwitch />
-            </main>
+            <main className="min-h-screen">{children}</main>
             <Footer />
           </ScrollProvider>
         </ThemeProvider>

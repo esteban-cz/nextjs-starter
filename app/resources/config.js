@@ -9,10 +9,7 @@ const info = {
   ],
 
   name: "Next.js Starter",
-  description: {
-    cs: "Next.js + shadcn-ui",
-    en: "Next.js + shadcn-ui",
-  },
+  description: "Next.js + shadcn-ui",
   keywords: "next.js, starter",
   icon: "/icon.png",
 
@@ -21,18 +18,12 @@ const info = {
 
 const routes = {
   "/": {
-    label: {
-      cs: "Domovská stránka",
-      en: "Homepage",
-    },
+    label: "Homepage",
     nav: true,
     protected: false,
   },
   "/secret": {
-    label: {
-      cs: "Tajemství",
-      en: "Secret",
-    },
+    label: "Secret",
     nav: false,
     protected: {
       role: "admin",
