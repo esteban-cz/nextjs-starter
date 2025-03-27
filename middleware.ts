@@ -21,6 +21,16 @@ export function middleware(request: {
 }) {
   const { pathname } = request.nextUrl;
 
+  const headersMap = new Map(request.headers);
+  const userAgent = headersMap.get("user-agent") || "";
+  const isBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider/i.test(
+    userAgent
+  );
+
+  if (pathname === "/" && isBot) {
+    return NextResponse.next();
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );

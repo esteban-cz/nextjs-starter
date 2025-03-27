@@ -22,6 +22,9 @@ export async function generateMetadata({
   const description = lang === "cs" ? info.description.cs : info.description.en;
   return {
     metadataBase: new URL(baseURL),
+    alternates: {
+      canonical: lang === "cs" ? `${baseURL}/cs` : `${baseURL}/en`,
+    },
     authors: info.author,
     title: {
       template: `%s | ${info.name}`,
