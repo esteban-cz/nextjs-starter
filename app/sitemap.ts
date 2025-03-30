@@ -15,9 +15,14 @@ export default async function sitemap() {
 
     for (const locale of locales) {
       const localizedPath = `/${locale}${path === "/" ? "" : path}`;
+
+      const depth = path === "/" ? 0 : path.split("/").filter(Boolean).length;
+      const priority = Math.max(1 - depth * 0.2, 0.2);
+
       sitemapRoutes.push({
         url: `${baseURL}${localizedPath}`,
         lastModified: new Date().toISOString(),
+        priority: priority,
       });
     }
   }
