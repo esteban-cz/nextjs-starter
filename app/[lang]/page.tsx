@@ -8,12 +8,13 @@ import { TextLoop } from "@/components/ui/text-loop";
 import { GlowEffect } from "@/components/ui/glow-effect";
 import { getDictionary } from "./dictionaries";
 import { Tilt } from "@/components/ui/tilt";
+import { Locale } from "@/localeConfig";
 
 export default async function Home({
   params,
 }: {
   params: Promise<{
-    lang: "en" | "cs";
+    lang: Locale;
   }>;
 }) {
   const { lang } = await params;

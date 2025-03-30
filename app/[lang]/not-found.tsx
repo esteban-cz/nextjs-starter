@@ -1,12 +1,13 @@
 import { getDictionary } from "./dictionaries";
 import { Button } from "@/components/ui/button";
+import { Locale } from "@/localeConfig";
 import { Home } from "lucide-react";
 import Link from "next/link";
 
 export default async function NotFound({
   params,
 }: {
-  params: Promise<{ lang: "en" | "cs" }>;
+  params: Promise<{ lang: Locale }>;
 }) {
   const resolvedParams = await params;
   const { lang } =

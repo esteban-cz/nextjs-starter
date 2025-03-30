@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LanguageSwitch from "@/components/ui/lang-button";
 import { DockFooter } from "@/components/layout/DockFooter";
+import { Locale } from "@/localeConfig";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{
-    lang: "en" | "cs";
+    lang: Locale;
   }>;
 }): Promise<Metadata> {
   const { lang } = await params;
@@ -41,7 +42,7 @@ export default async function RootLayout({
   children,
 }: {
   params: Promise<{
-    lang: "en" | "cs";
+    lang: Locale;
   }>;
   children: React.ReactNode;
 }) {
