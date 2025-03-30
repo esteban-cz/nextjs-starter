@@ -1,5 +1,13 @@
 {
   "home": {
     "language": "Čestina"
+  },
+  "not-found": {
+    "metadata": {
+      "title": "404 | Nenalezeno",
+      "description": "Je nám líto, ale stránka, kterou hledáte, neexistuje."
+    },
+    "headingText": "Je nám líto, ale stránka, kterou hledáte, neexistuje.",
+    "buttonText": "Zpět na Domovskou stránku"
   }
 }
