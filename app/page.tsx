@@ -137,7 +137,7 @@ export default async function Home() {
           transition={{ duration: 1, ease: "easeInOut" }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-24 text-center">
-            <Tilt rotationFactor={8} isRevese>
+            <Tilt rotationFactor={8} isReverse>
               <div className="relative mx-auto max-w-full h-full w-full">
                 <GlowEffect
                   colors={["#6203fc", "#C959DD", "#7f03fc", "#df03fc"]}
