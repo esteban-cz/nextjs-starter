@@ -39,6 +39,7 @@ export default tseslint.config(
       "@typescript-eslint/consistent-indexed-object-style": "off",
       "@typescript-eslint/non-nullable-type-assertion-style": "off",
       "@typescript-eslint/no-redundant-type-constituents": "off",
+      "react/no-unescaped-entities": "off",
       "no-var": "off",
       "prefer-const": "off",
     },
