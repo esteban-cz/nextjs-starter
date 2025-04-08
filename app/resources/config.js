@@ -9,7 +9,10 @@ const info = {
   ],
 
   name: "Next.js Starter",
-  description: "Next.js + shadcn-ui",
+  description: {
+    cs: "Nejlepší Next.js starter s Shadcn/ui a Tailwind CSS",
+    en: "The best Next.js starter with Shadcn/ui and Tailwind CSS",
+  },
   keywords: "next.js, starter",
   icon: "/icon.png",
 

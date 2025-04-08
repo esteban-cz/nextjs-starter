@@ -1,6 +1,6 @@
 "use server";
 
-import { Locale } from "@/localeConfig";
+import type { Locale } from "@/localeConfig";
 import "server-only";
 
 const dictionaries = {

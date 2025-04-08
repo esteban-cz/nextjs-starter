@@ -20,19 +20,19 @@ export default function LanguageSwitch() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed right-4 bottom-4 z-50">
       <Button
         onClick={handleSwitch}
         variant="outline"
         size="icon"
-        className="p-1 bg-primary/20 hover:bg-background transition-colors rounded-full"
+        className="bg-primary/20 hover:bg-background rounded-full p-1 transition-colors"
       >
         <Image
           src={`/lang/${alternateLang}.svg`}
           alt={`Switch to ${alternateLang.toUpperCase()}`}
           width={50}
           height={50}
-          className="w-full h-full rounded-full"
+          className="h-full w-full rounded-full"
         />
       </Button>
     </div>
