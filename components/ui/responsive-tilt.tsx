@@ -1,22 +1,24 @@
 "use client";
 
 import { Tilt } from "@/components/ui/tilt";
-import { useDevice } from "@/hooks/use-device";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ResponsiveTiltProps {
   rotationFactor: number;
   children: React.ReactNode;
+  className?: string;
 }
 
 export default function ResponsiveTilt({
   rotationFactor,
   children,
+  className,
 }: ResponsiveTiltProps) {
-  const isDesktop = useDevice();
+  const isMobile = useIsMobile();
 
-  if (isDesktop) {
+  if (!isMobile) {
     return (
-      <Tilt rotationFactor={rotationFactor} isReverse>
+      <Tilt rotationFactor={rotationFactor} className={className} isReverse>
         {children}
       </Tilt>
     );

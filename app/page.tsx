@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { info } from "@/app/resources";
 import { Button } from "@/components/ui/button";
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { TextShimmerWave } from "@/components/ui/text-shimmer-wave";
 import { InView } from "@/components/ui/in-view";
 import { TextLoop } from "@/components/ui/text-loop";
 import { GlowEffect } from "@/components/ui/glow-effect";
-import { Tilt } from "@/components/ui/tilt";
+import ResponsiveSlider from "@/components/ui/responsive-slider";
+import ResponsiveTilt from "@/components/ui/responsive-tilt";
 
 export default async function Home() {
   return (
@@ -109,7 +109,7 @@ export default async function Home() {
               </span>
             </TextLoop>
             <div className="flex justify-center">
-              <InfiniteSlider
+              <ResponsiveSlider
                 speedOnHover={20}
                 gap={20}
                 className="mt-8 max-w-lg"
@@ -121,7 +121,7 @@ export default async function Home() {
                 <Button variant="outline">Outline</Button>
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="link">Link</Button>
-              </InfiniteSlider>
+              </ResponsiveSlider>
             </div>
           </div>
         </InView>
@@ -137,7 +137,7 @@ export default async function Home() {
           transition={{ duration: 1, ease: "easeInOut" }}
         >
           <div className="mx-auto max-w-7xl px-4 py-10 text-center sm:px-6 sm:py-24 lg:px-8">
-            <Tilt rotationFactor={8} isReverse>
+            <ResponsiveTilt rotationFactor={8}>
               <div className="relative mx-auto h-full w-full max-w-full">
                 <GlowEffect
                   colors={["#6203fc", "#C959DD", "#7f03fc", "#df03fc"]}
@@ -156,7 +156,7 @@ export default async function Home() {
                   />
                 </div>
               </div>
-            </Tilt>
+            </ResponsiveTilt>
           </div>
         </InView>
       </section>

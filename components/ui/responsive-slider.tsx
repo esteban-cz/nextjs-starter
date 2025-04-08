@@ -1,13 +1,14 @@
 "use client";
 
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { useDevice } from "@/hooks/use-device";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ResponsiveSliderProps {
   gap: number;
   speedOnHover?: number;
   speed?: number;
   children: React.ReactNode;
+  className?: string;
 }
 
 export default function ResponsiveSlider({
@@ -15,15 +16,21 @@ export default function ResponsiveSlider({
   speedOnHover,
   speed,
   children,
+  className,
 }: ResponsiveSliderProps) {
-  const isDesktop = useDevice();
+  const isMobile = useIsMobile();
 
-  if (isDesktop) {
+  if (!isMobile) {
     return (
-      <InfiniteSlider gap={gap} speedOnHover={speedOnHover} speed={speed}>
+      <InfiniteSlider
+        gap={gap}
+        speedOnHover={speedOnHover}
+        speed={speed}
+        className={className}
+      >
         {children}
       </InfiniteSlider>
     );
   }
-  return <>{children}</>;
+  return <div className={className}>{children}</div>;
 }
