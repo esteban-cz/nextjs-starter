@@ -9,13 +9,13 @@ function Skeleton({ className, spinnerDimension, ...props }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "flex items-center justify-center animate-pulse rounded-lg bg-muted",
-        className
+        "bg-muted flex animate-pulse items-center justify-center rounded-lg",
+        className,
       )}
       {...props}
     >
       <Loader2
-        className={`animate-spin text-primary ${
+        className={`text-primary animate-spin ${
           spinnerDimension
             ? `h-${spinnerDimension} w-${spinnerDimension}`
             : `h-16 w-16`

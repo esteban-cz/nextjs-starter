@@ -1,11 +1,11 @@
-'use client';
+"use client";
 import {
   motion,
-  VariantLabels,
-  Target,
-  TargetAndTransition,
-  Transition,
-} from 'motion/react';
+  type VariantLabels,
+  type Target,
+  type TargetAndTransition,
+  type Transition,
+} from "motion/react";
 
 export type TextRollProps = {
   children: string;
@@ -33,7 +33,7 @@ export function TextRoll({
   getEnterDelay = (i) => i * 0.1,
   getExitDelay = (i) => i * 0.1 + 0.2,
   className,
-  transition = { ease: 'easeIn' },
+  transition = { ease: "easeIn" },
   variants,
   onAnimationComplete,
 }: TextRollProps) {
@@ -48,7 +48,7 @@ export function TextRoll({
     },
   } as const;
 
-  const letters = children.split('');
+  const letters = children.split("");
 
   return (
     <span className={className}>
@@ -56,11 +56,11 @@ export function TextRoll({
         return (
           <span
             key={i}
-            className='relative inline-block [perspective:10000px] [transform-style:preserve-3d] [width:auto]'
-            aria-hidden='true'
+            className="relative inline-block [width:auto] [perspective:10000px] [transform-style:preserve-3d]"
+            aria-hidden="true"
           >
             <motion.span
-              className='absolute inline-block [backface-visibility:hidden] [transform-origin:50%_25%]'
+              className="absolute inline-block [transform-origin:50%_25%] [backface-visibility:hidden]"
               initial={
                 variants?.enter?.initial ?? defaultVariants.enter.initial
               }
@@ -73,10 +73,10 @@ export function TextRoll({
                 delay: getEnterDelay(i),
               }}
             >
-              {letter === ' ' ? '\u00A0' : letter}
+              {letter === " " ? "\u00A0" : letter}
             </motion.span>
             <motion.span
-              className='absolute inline-block [backface-visibility:hidden] [transform-origin:50%_100%]'
+              className="absolute inline-block [transform-origin:50%_100%] [backface-visibility:hidden]"
               initial={variants?.exit?.initial ?? defaultVariants.exit.initial}
               animate={variants?.exit?.animate ?? defaultVariants.exit.animate}
               transition={{
@@ -88,15 +88,15 @@ export function TextRoll({
                 letters.length === i + 1 ? onAnimationComplete : undefined
               }
             >
-              {letter === ' ' ? '\u00A0' : letter}
+              {letter === " " ? "\u00A0" : letter}
             </motion.span>
-            <span className='invisible'>
-              {letter === ' ' ? '\u00A0' : letter}
+            <span className="invisible">
+              {letter === " " ? "\u00A0" : letter}
             </span>
           </span>
         );
       })}
-      <span className='sr-only'>{children}</span>
+      <span className="sr-only">{children}</span>
     </span>
   );
 }

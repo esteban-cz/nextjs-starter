@@ -1,12 +1,12 @@
-'use client';
-import { ReactNode, useRef } from 'react';
+"use client";
+import { type ReactNode, useRef } from "react";
 import {
   motion,
   useInView,
-  Variant,
-  Transition,
-  UseInViewOptions,
-} from 'motion/react';
+  type Variant,
+  type Transition,
+  type UseInViewOptions,
+} from "motion/react";
 
 export type InViewProps = {
   children: ReactNode;
@@ -29,7 +29,7 @@ export function InView({
   variants = defaultVariants,
   transition,
   viewOptions,
-  as = 'div',
+  as = "div",
 }: InViewProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, viewOptions);
@@ -39,8 +39,8 @@ export function InView({
   return (
     <MotionComponent
       ref={ref}
-      initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
       variants={variants}
       transition={transition}
     >

@@ -10,7 +10,7 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <footer className="border-t overflow-hidden">
+    <footer className="overflow-hidden border-t">
       <InView
         variants={{
           hidden: { opacity: 0, y: 10 },
@@ -19,7 +19,7 @@ export default function Footer() {
         viewOptions={{ once: false }}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="text-center">
             <Button
               onClick={scrollToTop}
@@ -29,7 +29,7 @@ export default function Footer() {
             >
               <ArrowUp />
             </Button>
-            <div className="text-sm text-muted-foreground mt-6">
+            <div className="text-muted-foreground mt-6 text-sm">
               © {new Date().getFullYear()} {info.name}.{" "}
               <div className="sm:inline">All rights reserved.</div>
             </div>

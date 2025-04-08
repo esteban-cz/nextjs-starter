@@ -1,5 +1,5 @@
 import BackButton from "@/components/ui/back-button";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
@@ -11,12 +11,11 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/10 via-background to-background flex items-center text-center justify-center p-4">
-      <div className="text-center space-y-6">
+    <div className="from-primary/10 via-background to-background flex min-h-screen items-center justify-center bg-gradient-to-b p-4 text-center">
+      <div className="space-y-6 text-center">
         <h1 className="text-4xl font-bold text-red-500">404</h1>
-        <p className="text-xl text-muted-foreground">
-          We&apos;re sorry, but the page you&apos;re looking for doesn&apos;t
-          exist.
+        <p className="text-muted-foreground text-xl">
+          We're sorry, but the page you're looking for doesn't exist.
         </p>
         <BackButton />
       </div>

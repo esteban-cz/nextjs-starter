@@ -22,7 +22,7 @@ export default function BackButton() {
       onClick={handleBack}
       className="inline-flex items-center"
     >
-      <ArrowLeft className="inline-block h-4 w-4 align-middle mr-2" />
+      <ArrowLeft className="mr-2 inline-block h-4 w-4 align-middle" />
       <span className="inline-block align-middle">Go back</span>
     </Button>
   );

@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
       try {
         await jwtVerify(
           token,
-          new TextEncoder().encode(process.env.JWT_SECRET)
+          new TextEncoder().encode(process.env.JWT_SECRET),
         );
         return NextResponse.redirect(new URL("/", request.url));
       } catch (error) {}
@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     ([routePath, config]) => {
       if (config.protected === false) return false;
       return pathname === routePath || pathname.startsWith(routePath + "/");
-    }
+    },
   );
 
   if (!protectedRouteEntry) {
@@ -38,7 +38,7 @@ export async function middleware(request: NextRequest) {
   try {
     const { payload } = await jwtVerify(
       token,
-      new TextEncoder().encode(process.env.JWT_SECRET)
+      new TextEncoder().encode(process.env.JWT_SECRET),
     );
     const userRole = payload.role as string;
     const requiredRole =

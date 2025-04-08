@@ -3,10 +3,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { baseURL, info } from "@/app/resources";
-import ScrollProvider from "@/components/providers/scroll-provider";
+import { ReactLenis } from "lenis/react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { DockFooter } from "@/components/layout/DockFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,11 +37,11 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ScrollProvider>
+          <ReactLenis root>
             <Navbar />
             <main className="min-h-screen">{children}</main>
             <Footer />
-          </ScrollProvider>
+          </ReactLenis>
         </ThemeProvider>
       </body>
     </html>

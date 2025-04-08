@@ -11,7 +11,7 @@ import { Tilt } from "@/components/ui/tilt";
 export default async function Home() {
   return (
     <div className="py-16">
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
+      <section className="from-primary/10 via-background to-background relative overflow-hidden bg-gradient-to-b">
         <InView
           variants={{
             hidden: { opacity: 0, y: 50 },
@@ -20,9 +20,9 @@ export default async function Home() {
           viewOptions={{ once: true }}
           transition={{ duration: 1, ease: "easeInOut" }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-            <h1 className="text-4xl font-bold sm:text-6xl mb-8 ">
-              <TextShimmerWave className="sm:inline mt-2 sm:mt-0">
+          <div className="mx-auto max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8">
+            <h1 className="mb-8 text-4xl font-bold sm:text-6xl">
+              <TextShimmerWave className="mt-2 sm:mt-0 sm:inline">
                 {info.name}
               </TextShimmerWave>
             </h1>
@@ -63,7 +63,7 @@ export default async function Home() {
               <span className="text-success">Text Success</span>
             </TextLoop>
             <TextLoop
-              className="overflow-y-clip ml-8"
+              className="ml-8 overflow-y-clip"
               transition={{
                 type: "spring",
                 stiffness: 900,
@@ -127,7 +127,7 @@ export default async function Home() {
         </InView>
       </section>
 
-      <section className="bg-background flex text-center justify-center">
+      <section className="bg-background flex justify-center text-center">
         <InView
           variants={{
             hidden: { opacity: 0, y: 50 },
@@ -136,9 +136,9 @@ export default async function Home() {
           viewOptions={{ once: true }}
           transition={{ duration: 1, ease: "easeInOut" }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-24 text-center">
+          <div className="mx-auto max-w-7xl px-4 py-10 text-center sm:px-6 sm:py-24 lg:px-8">
             <Tilt rotationFactor={8} isReverse>
-              <div className="relative mx-auto max-w-full h-full w-full">
+              <div className="relative mx-auto h-full w-full max-w-full">
                 <GlowEffect
                   colors={["#6203fc", "#C959DD", "#7f03fc", "#df03fc"]}
                   mode="rotate"

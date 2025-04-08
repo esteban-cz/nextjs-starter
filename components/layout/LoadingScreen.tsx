@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Loader2 } from "lucide-react";
 
 export default function LoadingScreen() {
@@ -12,10 +12,10 @@ export default function LoadingScreen() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-center min-h-screen bg-background"
+        className="bg-background flex min-h-screen items-center justify-center"
       >
         <div className="flex flex-col items-center">
-          <Loader2 className="h-16 w-16 animate-spin text-primary" />
+          <Loader2 className="text-primary h-16 w-16 animate-spin" />
         </div>
       </motion.div>
     </AnimatePresence>
