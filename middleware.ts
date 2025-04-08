@@ -1,65 +1,52 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { jwtVerify } from "jose";
-import { routes } from "@/app/resources";
+import { match } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
+import { locales, defaultLocale } from "@/localeConfig";
 
-export async function middleware(request: NextRequest) {
+function getLocale(request: {
+  headers: Iterable<readonly [PropertyKey, any]>;
+}) {
+  const headersObj = Object.fromEntries(request.headers);
+  const languages = new Negotiator({ headers: headersObj }).languages();
+  const matchedLocale = match(languages, locales, defaultLocale);
+  console.log("Matched locale:", matchedLocale);
+  return matchedLocale;
+}
+
+export function middleware(request: {
+  nextUrl: { clone?: any; pathname?: any };
+  headers: Iterable<readonly [PropertyKey, any]>;
+}) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/login") {
-    const token = request.cookies.get("auth-token")?.value;
-    if (token) {
-      try {
-        await jwtVerify(
-          token,
-          new TextEncoder().encode(process.env.JWT_SECRET),
-        );
-        return NextResponse.redirect(new URL("/", request.url));
-      } catch (error) {}
-    }
-  }
+  const headersMap = new Map(request.headers);
+  const userAgent = headersMap.get("user-agent") || "";
+  const isBot =
+    /bot|crawler|spider|google|bing|yahoo|telegram|linkedin|twitter|googlebot|bingbot|slurp|duckduckbot|baiduspider|facebookexternalhit|twitterbot|linkedinbot|embedly|pinterest|slackbot|vkShare|telegrambot/i.test(
+      userAgent,
+    );
 
-  const protectedRouteEntry = Object.entries(routes).find(
-    ([routePath, config]) => {
-      if (config.protected === false) return false;
-      return pathname === routePath || pathname.startsWith(routePath + "/");
-    },
-  );
-
-  if (!protectedRouteEntry) {
+  if (pathname === "/" && isBot) {
     return NextResponse.next();
   }
 
-  const token = request.cookies.get("auth-token")?.value;
-  if (!token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+  );
+
+  if (pathnameHasLocale) {
+    return NextResponse.next();
   }
 
-  try {
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode(process.env.JWT_SECRET),
-    );
-    const userRole = payload.role as string;
-    const requiredRole =
-      typeof protectedRouteEntry[1].protected === "object"
-        ? protectedRouteEntry[1].protected.role
-        : undefined;
+  const locale = getLocale({ headers: request.headers });
 
-    if (requiredRole === "admin" && userRole !== "admin") {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-
-    if (
-      requiredRole === "user" &&
-      userRole !== "user" &&
-      userRole !== "admin"
-    ) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-  } catch (error) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  return NextResponse.next();
+  const url = request.nextUrl.clone();
+  url.pathname = `/${locale}${pathname}`;
+  return NextResponse.redirect(url);
 }
+
+export const config = {
+  matcher: [
+    "/((?!_next/static|_next/image|icon.svg|sitemap.xml|robots.txt|opengraph-image.jpeg|twitter-image.jpeg|img|lang).*)",
+  ],
+};

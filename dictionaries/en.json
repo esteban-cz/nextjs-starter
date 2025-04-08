@@ -1,0 +1,13 @@
+{
+  "home": {
+    "lang": "English"
+  },
+  "not-found": {
+    "metadata": {
+      "title": "404 | Not Found",
+      "description": "We're sorry, but the page you're looking for doesn't exist."
+    },
+    "headingText": "We're sorry, but the page you're looking for doesn't exist.",
+    "buttonText": "Go back to Homepage"
+  }
+}

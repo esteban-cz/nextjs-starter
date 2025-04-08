@@ -7,8 +7,19 @@ import { TextLoop } from "@/components/ui/text-loop";
 import { GlowEffect } from "@/components/ui/glow-effect";
 import ResponsiveSlider from "@/components/ui/responsive-slider";
 import ResponsiveTilt from "@/components/ui/responsive-tilt";
+import type { Locale } from "@/localeConfig";
+import { getDictionary } from "./dictionaries";
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{
+    lang: Locale;
+  }>;
+}) {
+  const { lang } = await params;
+  const dictionaries = await getDictionary(lang);
+  const dict = dictionaries.home;
   return (
     <div className="py-16">
       <section className="from-primary/10 via-background to-background relative overflow-hidden bg-gradient-to-b">
@@ -26,6 +37,7 @@ export default async function Home() {
                 {info.name}
               </TextShimmerWave>
             </h1>
+            <p className="py-6">{dict.lang}</p>
             <TextLoop
               className="overflow-y-clip"
               transition={{

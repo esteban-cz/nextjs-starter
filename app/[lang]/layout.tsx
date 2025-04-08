@@ -6,6 +6,7 @@ import { baseURL, info } from "@/app/resources";
 import { ReactLenis } from "lenis/react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import LanguageSwitch from "@/components/ui/lang-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,7 +40,10 @@ export default async function RootLayout({
         >
           <ReactLenis root>
             <Navbar />
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-screen">
+              {children}
+              <LanguageSwitch />
+            </main>
             <Footer />
           </ReactLenis>
         </ThemeProvider>
