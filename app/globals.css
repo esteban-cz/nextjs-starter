@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Use this to generate themes! */
+/* https://shadcn-theme-generator.hyperlaunch.pro/ */
+
 @custom-variant dark (&:is(.dark *));
 
 * {
@@ -62,41 +65,74 @@
 }
 
 :root {
+  --background: oklch(0.942 0.022 310);
+  --card: oklch(0.942 0.022 310);
+  --popover: oklch(0.942 0.022 310);
+  --sidebar: oklch(0.942 0.022 310);
+  --foreground: oklch(0.213 0.007 315);
+  --card-foreground: oklch(0.213 0.007 315);
+  --popover-foreground: oklch(0.213 0.007 315);
+  --sidebar-foreground: oklch(0.213 0.007 315);
+  --primary: oklch(0.486 0.249 299);
+  --sidebar-primary: oklch(0.486 0.249 299);
+  --primary-foreground: oklch(0.961 0 0);
+  --sidebar-primary-foreground: oklch(0.961 0 0);
+  --secondary: oklch(0.867 0.031 309);
+  --accent: oklch(0.867 0.031 309);
+  --sidebar-accent: oklch(0.867 0.031 309);
+  --secondary-foreground: oklch(0.218 0 0);
+  --accent-foreground: oklch(0.218 0 0);
+  --sidebar-accent-foreground: oklch(0.218 0 0);
+  --muted: oklch(0.872 0.022 310);
+  --muted-foreground: oklch(0.52 0.033 308);
+  --destructive: oklch(0.597 0.238 29);
+  --destructive-foreground: oklch(0.961 0 0);
+  --border: oklch(0.699 0.096 308);
+  --sidebar-border: oklch(0.699 0.096 308);
+  --ring: oklch(0.629 0.171 306);
+  --sidebar-ring: oklch(0.629 0.171 306);
+  --input: oklch(0.705 0.084 308);
+  --chart-1: oklch(0.486 0.249 299);
+  --chart-2: oklch(0.445 0.229 294);
+  --chart-3: oklch(0.47 0.215 311);
+  --chart-4: oklch(0.377 0.19 285);
+  --chart-5: oklch(0.391 0.172 303);
   --radius: 1rem;
-  --background: oklch(0.708 0.089 289.365);
-  --foreground: oklch(0.103 0.017 289.365);
-  --card: oklch(0.667 0.041 289.365);
-  --card-foreground: oklch(0.103 0.017 289.365);
-  --popover: oklch(0.708 0.089 289.365);
-  --popover-foreground: oklch(0.708 0.089 289.365);
-  --primary: oklch(0.434 0.361 289.365);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.925 0.016 289.365);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.883 0.041 251.365);
-  --muted-foreground: oklch(0.158 0.02 289.365);
-  --accent: oklch(0.883 0.041 251.365);
-  --accent-foreground: oklch(0.103 0.017 289.365);
-  --destructive: oklch(0.705 0.845 0);
-  --destructive-foreground: oklch(0.103 0.017 289.365);
-  --success: oklch(0.87 0.2913 142.87);
-  --success-foreground: oklch(0.103 0.017 289.365);
-  --border: oklch(0.574 0.053 289.365);
-  --input: oklch(0.574 0.053 289.365);
-  --ring: oklch(0.434 0.361 289.365);
 }
 
 .dark {
-  --background: oklch(0.103 0.017 289.365);
-  --foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.222 0.016 289.365);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.222 0.016 289.365);
-  --muted-foreground: oklch(0.572 0.031 289.365);
-  --accent: oklch(0.222 0.016 289.365);
-  --accent-foreground: oklch(0.103 0.017 289.365);
-  --border: oklch(0.574 0.053 289.365);
-  --input: oklch(0.574 0.053 289.365);
+  --background: oklch(0.226 0.023 309);
+  --card: oklch(0.226 0.023 309);
+  --popover: oklch(0.226 0.023 309);
+  --sidebar: oklch(0.226 0.023 309);
+  --foreground: oklch(0.959 0 0);
+  --card-foreground: oklch(0.959 0 0);
+  --popover-foreground: oklch(0.959 0 0);
+  --sidebar-foreground: oklch(0.959 0 0);
+  --primary: oklch(0.642 0.207 305);
+  --sidebar-primary: oklch(0.642 0.207 305);
+  --primary-foreground: oklch(0.961 0 0);
+  --sidebar-primary-foreground: oklch(0.961 0 0);
+  --secondary: oklch(0.289 0.067 307);
+  --accent: oklch(0.289 0.067 307);
+  --sidebar-accent: oklch(0.289 0.067 307);
+  --secondary-foreground: oklch(0.961 0 0);
+  --accent-foreground: oklch(0.961 0 0);
+  --sidebar-accent-foreground: oklch(0.961 0 0);
+  --muted: oklch(0.342 0.057 309);
+  --muted-foreground: oklch(0.664 0.035 310);
+  --destructive: oklch(0.613 0.228 27);
+  --destructive-foreground: oklch(0.961 0 0);
+  --border: oklch(0.303 0.087 307);
+  --sidebar-border: oklch(0.303 0.087 307);
+  --ring: oklch(0.334 0.151 302);
+  --sidebar-ring: oklch(0.334 0.151 302);
+  --input: oklch(0.305 0.077 307);
+  --chart-1: oklch(0.642 0.207 305);
+  --chart-2: oklch(0.663 0.179 302);
+  --chart-3: oklch(0.723 0.164 314);
+  --chart-4: oklch(0.719 0.127 296);
+  --chart-5: oklch(0.772 0.109 308);
 }
 
 @layer base {
