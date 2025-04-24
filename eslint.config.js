@@ -40,6 +40,8 @@ export default tseslint.config(
       "@typescript-eslint/non-nullable-type-assertion-style": "off",
       "@typescript-eslint/no-redundant-type-constituents": "off",
       "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+      "@typescript-eslint/no-explicit-any": "off",
       "react/no-unescaped-entities": "off",
       "no-var": "off",
       "prefer-const": "off",

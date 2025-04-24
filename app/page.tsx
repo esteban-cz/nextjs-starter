@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { info } from "@/app/resources";
 import { Button } from "@/components/ui/button";
 import { TextShimmerWave } from "@/components/ui/text-shimmer-wave";
 import { InView } from "@/components/ui/in-view";
@@ -23,7 +22,7 @@ export default async function Home() {
           <div className="mx-auto max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8">
             <h1 className="mb-8 text-4xl font-bold sm:text-6xl">
               <TextShimmerWave className="mt-2 sm:mt-0 sm:inline">
-                {info.name}
+                Next.js 15
               </TextShimmerWave>
             </h1>
             <TextLoop
@@ -146,11 +145,11 @@ export default async function Home() {
                 />
                 <div className="relative h-full w-full rounded-lg">
                   <Image
-                    src={info.image}
+                    src="/img/banner.png"
                     width={600}
                     height={300}
-                    title={info.name}
-                    alt={info.name}
+                    title="Next.js 15"
+                    alt="Next.js 15"
                     priority={true}
                     className="rounded-lg"
                   />

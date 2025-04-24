@@ -2,7 +2,6 @@ import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { baseURL, info } from "@/app/resources";
 import { ReactLenis } from "lenis/react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -11,15 +10,15 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL(baseURL),
-    authors: info.author,
+    metadataBase: new URL("http://localhost:3000"),
+    authors: { name: "Next.js 15" },
     title: {
-      template: `%s | ${info.name}`,
-      default: info.name,
+      template: `%s | Next.js 15`,
+      default: "Next.js 15",
     },
-    description: info.description,
-    keywords: info.keywords,
-    icons: [{ rel: "icon", url: info.icon }],
+    description: "Next.js 15",
+    keywords: "Next.js 15",
+    icons: [{ rel: "icon", url: "icon.png" }],
   };
 }
 
