@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL("http://localhost:3000"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
     authors: { name: "Next.js 15" },
     title: {
       template: `%s | Next.js 15`,

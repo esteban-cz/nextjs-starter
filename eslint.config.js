@@ -45,6 +45,17 @@ export default tseslint.config(
       "react/no-unescaped-entities": "off",
       "no-var": "off",
       "prefer-const": "off",
+      "no-restricted-imports": [
+        "warn",
+        {
+          patterns: [
+            {
+              group: ["../*"],
+              message: "Usage of relative parent imports is not allowed.",
+            },
+          ],
+        },
+      ],
     },
   },
   {
