@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev --turbo",
     "prod": "prettier --write . && next build && next start",
+    "pre": "prettier --write . && next lint && tsc --noEmit",
+    "pre:build": "prettier --write . && next lint && tsc --noEmit && next build",
     "build": "next build",
     "start": "next start",
     "check": "next lint && tsc --noEmit",
