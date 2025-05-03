@@ -5,20 +5,18 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ReactLenis } from "lenis/react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ToasterWithTheme from "@/components/ui/theme-toaster";
+import RegisterSW from "@/components/PWA/register-sw";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
-    authors: { name: "Next.js 15" },
-    title: {
-      template: `%s | Next.js 15`,
-      default: "Next.js 15",
-    },
-    description: "Next.js 15",
-    keywords: "Next.js 15",
-    icons: [{ rel: "icon", url: "icon.png" }],
+    authors: [{ name: "Štěpán Tomečka", url: "" }],
+    title: " Create StyxQ",
+    description: "Next.js 15 App Router + TailwindCSS + ShadcnUI + PWA Support",
+    keywords: ["next", "nextjs", "tailwind", "shadcn", "pwa"],
   };
 }
 
@@ -38,7 +36,9 @@ export default async function RootLayout({
         >
           <ReactLenis root>
             <Navbar />
+            <RegisterSW />
             <main className="min-h-screen">{children}</main>
+            <ToasterWithTheme />
             <Footer />
           </ReactLenis>
         </ThemeProvider>
