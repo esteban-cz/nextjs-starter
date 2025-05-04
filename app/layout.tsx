@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToasterWithTheme from "@/components/ui/theme-toaster";
 import RegisterSW from "@/components/PWA/register-sw";
+import CookieConsent from "@/components/ui/cookies-consent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +39,7 @@ export default async function RootLayout({
             <Navbar />
             <RegisterSW />
             <main className="min-h-screen">{children}</main>
+            <CookieConsent essential />
             <ToasterWithTheme />
             <Footer />
           </ReactLenis>

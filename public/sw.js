@@ -1,40 +1,36 @@
-const CACHE_NAME = "create-styxq";
-const ASSETS_TO_CACHE = [
-  "/",
-  "/offline.html",
-  "/manifest.json",
-  "/img/logo.png",
-];
+const CACHE_VERSION = 1;
+const CACHE = {
+  OFFLINE: "cyberacademy-cache-v" + CACHE_VERSION,
+};
+const OFFLINE_URL = "offline.html";
+const OFFLINE_ICON = "icon.svg";
 
-self.addEventListener("install", (evt) => {
-  evt.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => cache.addAll(ASSETS_TO_CACHE))
-      .then(() => self.skipWaiting()),
-  );
-});
-
-self.addEventListener("activate", (evt) => {
-  evt.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(
-          keys
-            .filter((key) => key !== CACHE_NAME)
-            .map((key) => caches.delete(key)),
-        ),
-      )
-      .then(() => self.clients.claim()),
-  );
-});
-
-self.addEventListener("fetch", (evt) => {
-  evt.respondWith(
-    caches.match(evt.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(evt.request).catch(() => caches.match("/offline.html"));
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open(CACHE.OFFLINE).then(function (cache) {
+      return cache.add(OFFLINE_URL);
+    }),
+    caches.open(CACHE.OFFLINE).then(function (cache) {
+      return cache.add(OFFLINE_ICON);
     }),
   );
+});
+
+self.addEventListener("fetch", function (event) {
+  if (
+    event.request.mode === "navigate" ||
+    (event.request.method === "GET" &&
+      event.request.headers.get("accept").includes("text/html"))
+  ) {
+    event.respondWith(
+      (async function () {
+        try {
+          return await fetch(event.request, { redirect: "manual" });
+        } catch {
+          const cache = await caches.open(CACHE.OFFLINE);
+          return await cache.match(OFFLINE_URL);
+        }
+      })(),
+    );
+  }
 });

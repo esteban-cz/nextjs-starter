@@ -1,13 +1,141 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Offline — CyberAcademy</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Academy — Offline</title>
+
+    <script>
+      window.addEventListener("online", function () {
+        window.location.reload();
+      });
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="icon.png" type="image/png" />
+
+    <style>
+      /* ---------- THEME VARIABLES ---------- */
+      :root {
+        /* Gradient stops */
+        --gradient-from: oklch(0.54 0.1762 266.55);
+        --gradient-via: oklch(0.85 0.0011 17.18);
+        --gradient-to: oklch(0.69 0.0175 262.73);
+
+        /* Fallback/base */
+        --bg-fallback: #ffffff;
+        --fg-light: oklch(0.141 0.004 286);
+        --primary-light: oklch(0.546 0.215 263);
+
+        --radius: 1rem;
+        --font-sans: ui-sans-serif, system-ui, sans-serif;
+      }
+
+      /* Dark mode overrides */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --gradient-from: oklch(37.9% 0.146 265.522);
+          --gradient-via: oklch(0 0 none);
+          --gradient-to: oklch(21% 0.034 264.665);
+
+          --bg-fallback: #0f172a;
+          --fg-light: oklch(0.985 0 90);
+          --primary-light: oklch(0.623 0.188 260);
+        }
+      }
+
+      /* OKLCH unsupported fallback */
+      @supports not (color: oklch(0.54 0.1762 266.55)) {
+        :root {
+          --gradient-from: #e0e7ff;
+          --gradient-via: #c7d2fe;
+          --gradient-to: #a5b4fc;
+        }
+      }
+
+      /* ---------- RESET & LAYOUT ---------- */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--fg-light);
+        background-color: var(--bg-fallback);
+        background-image: linear-gradient(
+          to bottom right,
+          var(--gradient-from),
+          var(--gradient-via),
+          var(--gradient-to)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .offline-card {
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 360px;
+        width: 100%;
+      }
+      @media (prefers-color-scheme: dark) {
+        .offline-card {
+          background-color: rgba(17, 24, 39, 0.85);
+        }
+      }
+
+      .logo {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        color: var(--primary-light);
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--primary-light);
+        color: var(--bg-fallback);
+        text-decoration: none;
+        border-radius: calc(var(--radius) * 0.75);
+        font-weight: 500;
+        transition: opacity 0.2s ease;
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+    </style>
   </head>
-  <body style="font-family: sans-serif; text-align: center; padding: 2rem">
-    <h1>You’re offline</h1>
-    <p>Sorry, that page isn’t available right now.</p>
-    <a href="/">← Back to home</a>
+
+  <body>
+    <div class="offline-card">
+      <h1>😵‍💫 You’re Offline</h1>
+      <p>
+        It looks like you’ve lost your connection.<br />
+        Check your internet and try again.
+      </p>
+      <a href="/" class="btn">Back to Home</a>
+    </div>
   </body>
 </html>

@@ -10,24 +10,16 @@ export default function Home() {
   // const supabase = createClient();
 
   // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     const {
-  //       data: { user },
-  //     } = await supabase.auth.getUser();
-  //     setIsAuthenticated(!!user);
+  //   let mounted = true;
+  //   supabase.auth
+  //     .getUser()
+  //     .then(({ data: { user } }) => {
+  //       if (mounted) setIsAuthenticated(!!user);
+  //     })
+  //     .catch((err) => console.error("Error fetching user:", err));
+  //   return () => {
+  //     mounted = false;
   //   };
-
-  //   checkAuth().catch((err) => {
-  //     console.error("Error fetching current user:", err);
-  //   });
-
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((_event, session) => {
-  //     setIsAuthenticated(!!session?.user);
-  //   });
-
-  //   return () => subscription.unsubscribe();
   // }, [supabase]);
 
   return (
