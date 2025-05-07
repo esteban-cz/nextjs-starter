@@ -1,6 +1,6 @@
 const CACHE_VERSION = 1;
 const CACHE = {
-  OFFLINE: "cyberacademy-cache-v" + CACHE_VERSION,
+  OFFLINE: "cache-v" + CACHE_VERSION,
 };
 const OFFLINE_URL = "offline.html";
 const OFFLINE_ICON = "icon.svg";

@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Rocket } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import ThemeButton from "@/components/ui/theme-button";
+import ThemeButton from "@/components/ui/theme/theme-button-animated";
 import InstallPrompt from "@/components/PWA/install-prompt";
 
 const menuVariants = {
