@@ -1,6 +1,7 @@
 # Supabase CheatSheet
 
 ## Check Auth
+
 ```
 useEffect(() => {
     let mounted = true;
@@ -17,6 +18,7 @@ useEffect(() => {
 ```
 
 ## Sign-In
+
 ```
 const onSubmit = async (data: SignInForm) => {
     const { error } = await supabase.auth.signInWithPassword({
@@ -36,6 +38,7 @@ const onSubmit = async (data: SignInForm) => {
 ```
 
 ## Sign-Up
+
 ```
 const onSubmit = async (data: SignUpForm) => {
     const { error } = await supabase.auth.signUp({
@@ -82,6 +85,7 @@ const onSubmit = async (data: SignUpForm) => {
 ```
 
 ## Sign-Out
+
 ```
 const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -93,9 +97,10 @@ const handleSignOut = async () => {
     router.push("/");
     toast.success("Successfully signed out!");
   };
-```  
+```
 
 ## Get User
+
 ```
 useEffect(() => {
     const getUser = async () => {
@@ -109,6 +114,7 @@ useEffect(() => {
 ```
 
 ## Fetch from table "Courses"
+
 ```
 useEffect(() => {
     const fetchCourses = async () => {
