@@ -17,8 +17,16 @@ export default function Home() {
   //       if (mounted) setIsAuthenticated(!!user);
   //     })
   //     .catch((err) => console.error("Error fetching user:", err));
+
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     if (mounted) setIsAuthenticated(!!session?.user);
+  //   });
+
   //   return () => {
   //     mounted = false;
+  //     subscription.unsubscribe();
   //   };
   // }, [supabase]);
 
